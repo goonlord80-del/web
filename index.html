@@ -62,6 +62,7 @@ async function sendToZapier(ip) {
 
     const now = new Date();
 
+    // Human-readable timestamp
     const formattedTime = now.toLocaleString("en-US", {
         month: "short",
         day: "numeric",
@@ -74,9 +75,10 @@ async function sendToZapier(ip) {
 
     const simpleUA = simplifyUserAgent();
 
+    // Force Google Sheets to treat timestamp as text by adding a leading single quote
     const formData = new URLSearchParams({
         ip_address: ip,
-        timestamp: formattedTime,
+        timestamp: "'" + formattedTime,
         user_agent: simpleUA
     });
 
